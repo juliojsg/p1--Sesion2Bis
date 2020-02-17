@@ -4,9 +4,9 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.servlet.http.Cookie;
 
-
-@WebServlet("/EmailList")
+@WebServlet("/RecuperacionUsuario")
 public class RecupercionUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -26,9 +26,11 @@ public class RecupercionUsuario extends HttpServlet {
 		
 		UsuarioDB basededatos = new UsuarioDB( );
 		basededatos.add (usuario);
+		
 		//A continuación se guarda en la sesión el mismo objeto que en la base de datos
 		HttpSession session = request.getSession( );
 		session.setAttribute ("usuario",usuario);
+		
 		//Y se almacena el email en una cookie para poder identificar en el futuro
 		//al usuario mediante su email cuando vuelva a navegar por el sitio web
 		Cookie c = new Cookie("emailCookie", email);
