@@ -37,5 +37,18 @@ public class RecupercionUsuario extends HttpServlet {
 		c.setMaxAge(60*60*24*365*2);
 		c.setPath("/");
 		response.addCookie(c);
-}
+		
+		Cookie[ ] cookies = request.getCookies( );
+		if (cookies!=null){
+		for (Cookie cookie: cookies){
+		cookie.setMaxAge(0);
+		cookie.setPath("/");
+		response.addCookie(cookie);
+		}
+		}
+	
+		
+		
+		
+		}
 }
